@@ -6,14 +6,16 @@
     "page_load_wait_time": 0,
     "options": [],
     "capabilities": {
+      "LT:Options" : {
         "build": "pytest build 4",
         "name": "pytest tutorial",
-        "platform": "macOS Sierra",
-        "browserName": "Edge",
-        "version": "85",
+        "platform": "Windows 8",
+        "browserName": "chrome",
+        "version": "latest",
         "resolution": "1920x1080",
         "console": "true",
         "network": "true"
+      }
     },
     "version": "latest",
     "experimental_options": null,
