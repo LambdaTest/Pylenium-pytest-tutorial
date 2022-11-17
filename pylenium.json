@@ -24,7 +24,7 @@
   },
 
   "logging":{
-    "screenshots_on": false,
+    "screenshots_on": true,
     "pylog_level": "INFO"
   },
 
