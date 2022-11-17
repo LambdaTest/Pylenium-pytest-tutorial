@@ -24,8 +24,8 @@
   },
 
   "logging":{
-    "screenshots_on": true,
-    "pylog_level": "info"
+    "screenshots_on": false,
+    "pylog_level": "INFO"
   },
 
   "viewport": {
