@@ -2,7 +2,7 @@ from pylenium.driver import Pylenium
 
 
 def test_google(py: Pylenium):
-    py.visit('https://google.com')
-    py.get('[name="q"]').type('puppies')
-    py.get('[name="btnK"]').submit()
-    assert py.should().contain_title('puppies')
+    py.visit('https://lambdatest.github.io/sample-todo-app/')
+    py.get('[id="sampletodotext"]').type('Pylenium-PyTest')
+    py.get('[id="addbutton"]').submit()
+    assert py.should().contain_title('lambdatest')
