@@ -27,7 +27,6 @@ import sys
 import pytest
 import requests
 from faker import Faker
-from reportportal_client import RPLogger, RPLogHandler
 
 from pylenium.driver import Pylenium
 from pylenium.config import PyleniumConfig, TestCase
