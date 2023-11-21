@@ -1,0 +1,2 @@
+pyleniumio==1.20.0
+pytest-rerunfailures==12.0
