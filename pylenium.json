@@ -6,10 +6,10 @@
     "page_load_wait_time": 0,
     "options": [],
     "capabilities": {
-      "LT:Options" : {
+      "LT:Options": {
         "build": "pytest build 4",
         "name": "pytest tutorial",
-        "platform": "Windows 8",
+        "platform": "Windows 10",
         "browserName": "chrome",
         "version": "latest",
         "resolution": "1920x1080",
@@ -23,7 +23,7 @@
     "local_path": ""
   },
 
-  "logging":{
+  "logging": {
     "screenshots_on": true,
     "pylog_level": "INFO"
   },

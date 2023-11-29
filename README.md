@@ -23,7 +23,7 @@ poetry install
 Otherwise, create a virtual environment first and then install Pylenium in it:
 
 ```bash
-pip install pyleniumio
+pip install -r requirements.txt
 ```
 
 2. Pylenium uses `pytest` as the Test Framework, but you need to setup your IDE to use pytest. (If you followed the recommended video, this step is already done.)
