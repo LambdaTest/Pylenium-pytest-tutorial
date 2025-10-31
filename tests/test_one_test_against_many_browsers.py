@@ -4,6 +4,12 @@ from pylenium.driver import Pylenium
 
 def search(py, query):
     py.visit('https://google.com')
+    try:
+        accept_btn = py.getx('//div[text()="Accept all"]', timeout=3)
+        accept_btn.click()
+    except Exception:
+# Popup not found within 3 seconds — continue normally
+        pass
     py.get('[name="q"]').type(query)
     py.get('[name="btnK"]').submit()
     return py.should().contain_title(query)

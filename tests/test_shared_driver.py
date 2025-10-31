@@ -1,68 +1,60 @@
-""" This module contains an example of a shared, global driver.
-
-😱 Be careful with this!
-Sharing data and state between tests can have them "tripping" over each other
-and affect each other's outcome which is probably not what you want.
-
-😬 Also, don't have test function 3️⃣ be dependent on test function 2️⃣ which is dependent on 1️⃣
-1️⃣ > 2️⃣ > 3️⃣
-
-> This removes their ability to be executed in parallel because you've forced a sequential flow
-
-Instead:
-🚘 Each test should get its own instance of a driver (and any objects dependent on a driver like Page Objects)
-🔀 Tests should be independent of each other
-🤏 Tests should be as modular as possible, but do what makes sense for you!
-💡 Tests should manage their own data and state (but that's for a different course)
-
-Following these guidelines will enable you to run all your tests in parallel!
-"""
-import time
-from typing import List
-from selenium import webdriver
-from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
-from webdriver_manager.chrome import ChromeDriverManager
+import pytest
+from pylenium.driver import Pylenium
+from pylenium.element import Element, Elements
 
 
 class TodoPage:
-    def __init__(self, driver: WebDriver):
-        self.driver = driver
+    def __init__(self, py: Pylenium):
+        self.py = py
 
-    def goto(self) -> 'TodoPage':
-        self.driver.get('https://lambdatest.github.io/sample-todo-app/')
+    def goto(self) -> "TodoPage":
+        self.py.visit("https://lambdatest.github.io/sample-todo-app/")
         return self
 
-    def get_all_todos(self) -> List[WebElement]:
-        return self.driver.find_elements_by_css_selector("li[ng-repeat*='todo'] > input")
+    def get_todo_by_name(self, name: str) -> Element:
+        return self.py.getx(f"(//*[contains(text(),'{name}')])[2]").parent().get("input")
 
-    def add_todo(self, name: str) -> 'TodoPage':
-        self.driver.find_element_by_id('sampletodotext').send_keys(name)
-        self.driver.find_element_by_id('addbutton').click()
+    def get_all_todos(self) -> Elements:
+        return self.py.find("li[ng-repeat*='todo'] > input")
+
+    def add_todo(self, name: str) -> "TodoPage":
+        self.py.get("#sampletodotext").type(name)
+        self.py.get("#addbutton").click()
         return self
 
 
-""" 😅 Shared, global driver. """
-driver = webdriver.Chrome(ChromeDriverManager().install())
-page = TodoPage(driver).goto()
+
+@pytest.fixture
+def page(py: Pylenium):
+    return TodoPage(py).goto()
 
 
-def test_add_new_item():
-    page.add_todo(name='Make tests independent')
-    time.sleep(5)  # DEMO: simulate more complicated flow
+@pytest.mark.flaky(reruns=2, reruns_delay=3)
+def test_check_first_item(page: TodoPage):
+    checkbox = page.get_todo_by_name("Complete initial setup")
+    checkbox.click()
+    assert checkbox.should().be_checked()
+
+
+@pytest.mark.flaky(reruns=2, reruns_delay=3)
+def test_check_many_items(py: Pylenium, page: TodoPage):
     todos = page.get_all_todos()
-    assert len(todos) == 6
+    todo2, todo4 = todos[1], todos[3]
+    todo2.click()
+    todo4.click()
+    assert py.contains("3 of 5 tasks remaining")
 
 
-def test_add_blank_item():
-    time.sleep(3)  # DEMO: simulate more complicated flow
-    page.add_todo(name='')
-    todos = page.get_all_todos()
-    assert len(todos) == 6
+@pytest.mark.flaky(reruns=2, reruns_delay=3)
+def test_check_all_items(py: Pylenium, page: TodoPage):
+    for todo in page.get_all_todos():
+        todo.click()
+    assert py.contains("All tasks completed! Great work!")
 
 
-def test_add_two_items():
-    page.add_todo(name='Watch module 3')
-    page.add_todo(name='Watch module 4')
-    todos = page.get_all_todos()
-    assert len(todos) == 7
+@pytest.mark.flaky(reruns=2, reruns_delay=3)
+def test_add_new_item(py: Pylenium, page: TodoPage):
+    page.add_todo("Finish the course")
+    assert page.get_all_todos().should().have_length(6)
+    assert py.contains("6 of 6 tasks remaining")
+
