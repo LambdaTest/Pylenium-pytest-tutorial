@@ -1,58 +1,139 @@
-# Cross Browser Testing with LambdaTest using Pylenium + pytest
+# Run Pylenium + pytest Tests on TestMu AI (Formerly LambdaTest)
 
-This repo accompanies the LambdaTest YouTube video series and includes all of the code examples seen in each video.
+<p align="center">
+  <a href="https://www.testmuai.com/"><img src="https://img.shields.io/badge/MADE%20BY%20TestMu%20AI-000000.svg?style=for-the-badge&labelColor=000" alt="Made by TestMu AI"></a>
+  <a href="https://pypi.org/project/pyleniumio/"><img src="https://img.shields.io/pypi/v/pyleniumio.svg?style=for-the-badge&labelColor=000000" alt="pyleniumio version"></a>
+  <a href="https://community.testmuai.com/"><img src="https://img.shields.io/badge/Join%20the%20community-blueviolet.svg?style=for-the-badge&labelColor=000000" alt="Community"></a>
+</p>
 
-> This series is all about using Pylenium + pytest to perform Cross Browser Testing with LambdaTest!
+## Getting Started
 
-## How to use this repo
+[TestMu AI](https://www.testmuai.com/) (Formerly LambdaTest) is the world's first full-stack AI Agentic Quality Engineering platform that empowers teams to test intelligently, smarter, and ship faster. Built for scale, it offers a full-stack testing cloud with 10K+ real devices and 3,000+ browsers. With AI-native test management, MCP servers, and agent-based automation, TestMu AI supports Selenium, Appium, Playwright, and all major frameworks. 
 
-If you want to follow along with the exact setup that I'm using, then I recommend watching my YouTube video called:
+With TestMu AI (Formerly LambdaTest), you can run Pylenium + pytest cross browser tests across real browsers and operating systems. This tutorial series shows how to configure Pylenium with pytest to perform cross browser testing on the TestMu AI cloud.
 
-[Setup VS Code for Python with pyenv & poetry](https://youtu.be/547Jr26duHQ)
+- [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
+- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/) for the full setup walkthrough.
 
-> I highly recommend watching the above video! It will guide you through setting up your machine and your IDE for Python Development!
+### Prerequisites
 
-Then clone this project and you're ready to follow the remaining steps!
+- Python 3.8+
+- pip or poetry
+- A TestMu AI (Formerly LambdaTest) account with your username and access key
 
-1. If using `poetry`, then install the dependencies which will also create a virtual environment automatically. (If you followed the recommended video, this step is already done.)
+### Setup
+
+Clone and install dependencies:
+
+```bash
+git clone https://github.com/LambdaTest/Pylenium-pytest-tutorial && cd Pylenium-pytest-tutorial
+```
+
+If using `poetry`:
 
 ```bash
 poetry install
 ```
 
-Otherwise, create a virtual environment first and then install Pylenium in it:
+Otherwise, install using pip:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Pylenium uses `pytest` as the Test Framework, but you need to setup your IDE to use pytest. (If you followed the recommended video, this step is already done.)
+Set your credentials as environment variables.
 
-3. There is a branch for each video in the series. Within each branch, there is a commit with different pieces as I progress through the video. This is helpful since you can follow the progression of the code in the video. You can pause the video, checkout the commit we're currently working on, and copy + paste or try things yourself!
+**macOS / Linux:**
 
-> I've included the links to each commit below for convenience :)
+```bash
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
 
-**_Video 1 - Introduction and Setup_**
+**Windows:**
 
-- No code yet at this point
+```bash
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+```
 
-**_Video 2 - Write UI Tests_**
+### Run tests
 
-- [Write the first test](https://github.com/ElSnoMan/LambdaTest-with-python/commit/1304dab5bc7cdacb63e6b9cb45f265b2e553769f)
-- [Write the second test](https://github.com/ElSnoMan/LambdaTest-with-python/commit/8ba654fb2b0299fb0a3de5aac5800b7156d5c976)
-- [Refactor logic to TodoPage and page fixture](https://github.com/ElSnoMan/LambdaTest-with-python/commit/5521c6d9b4ee3000864d4f04ea12b0fcb0b85fc2)
-- [Write a new test and cleanup our existing tests](https://github.com/ElSnoMan/LambdaTest-with-python/commit/4b994065c8fb06a1edbe9e3f05bb6bed46555058)
-- [Design decision: move .get('input') to our class methods?](https://github.com/ElSnoMan/LambdaTest-with-python/commit/726da7cd5c08e141c6a7d21955622e04eb835c74)
-- [Write the final test](https://github.com/ElSnoMan/LambdaTest-with-python/commit/26c7b0ef32c4f64db62ed7166eda9651a3e619d8)
+Run the test suite with pytest:
 
-**_Video 3 - Run Tests in Parallel_**
+```bash
+pytest
+```
 
-- [Tests with a shared driver](https://github.com/ElSnoMan/LambdaTest-with-python/commit/83f4f9f1da7ba71a9aa273c98701ac4265b4a057)
+View results on your TestMu AI dashboard.
 
-**_Video 4 - Cross Browser Testing with LambdaTest_**
+### Local testing with TestMu AI Tunnel
 
-- [LambdaTest fixture example with Selenium](https://github.com/ElSnoMan/LambdaTest-with-python/commit/e942fd35a1def236e436816e70d6fa141d627847)
-- [Connect to LambdaTest with Pylenium](https://github.com/ElSnoMan/LambdaTest-with-python/commit/58f20c50b82930e7341f19db50334d4587ede3d5)
-- [Change config to target Edge on MacOS Sierra](https://github.com/ElSnoMan/LambdaTest-with-python/commit/272a079f4ee3c51836bc19b81b9afc6f583dd54e)
-- [Different tests with different browsers](https://github.com/ElSnoMan/LambdaTest-with-python/commit/c0502f4785837e6f2839f4902ac87c6e028cc4ea)
-- [One test against multiple browsers](https://github.com/ElSnoMan/LambdaTest-with-python/commit/e261a4857b9967ab0936ec1f5d4b5b0de369d067)
+To test locally hosted apps, set up the TestMu AI tunnel. OS-specific guides:
+
+- [Local Testing on Windows](https://www.testmuai.com/support/docs/local-testing-for-windows/)
+- [Local Testing on macOS](https://www.testmuai.com/support/docs/local-testing-for-macos/)
+- [Local Testing on Linux](https://www.testmuai.com/support/docs/local-testing-for-linux/)
+
+Add the following to your capabilities:
+
+```js
+tunnel: true,
+```
+
+### Avoid timeouts with `pseudoActivityInterval`
+
+TestMu AI aborts test sessions if the machine is held idle for 90+ seconds. To keep sessions alive, send a heartbeat:
+
+```js
+customLaunchers: {
+  chrome: {
+    pseudoActivityInterval: 5000 // 5s heartbeat
+  }
+}
+```
+
+The default is `0` (disabled). Set any value above `0` to enable.
+
+## Contributions
+
+Contributions are welcome. Open an issue to discuss your idea before submitting a pull request. When reporting bugs, include your Python version, OS, and pip version.
+
+## TestMu AI (Formerly LambdaTest) Community
+
+Connect with testers and developers in the [TestMu AI Community](https://community.testmuai.com/). Ask questions, share what you are building, and discuss best practices in test automation and DevOps.
+  
+## TestMu AI (Formerly LambdaTest) Certifications
+
+Earn free [TestMu AI Certifications](https://www.testmuai.com/certifications/) for testers, developers, and QA engineers. Validate your skills in Selenium, Cypress, Playwright, Appium, Espresso and more. Industry-recognized, shareable on LinkedIn, and built by practitioners, not marketers.
+
+## Learning Resources by TestMu AI (Formerly LambdaTest)
+
+Learn modern testing through tutorials, guides, videos, and weekly updates:
+
+* [TestMu AI Blog](https://www.testmuai.com/blog/)
+* [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
+* [TestMu AI on YouTube](https://www.youtube.com/@TestMuAI)
+* [TestMu AI Newsletter](https://www.testmuai.com/newsletter/)
+  
+## LambdaTest is Now TestMu AI
+
+On **January 12, 2026**, [LambdaTest evolved to TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/), the world's first fully autonomous **Agentic AI Quality Engineering Platform**.
+
+Same team. Same infrastructure. Same customer accounts. All existing LambdaTest logins, scripts, capabilities, and integrations continue to work without change.
+
+Find the new home for [LambdaTest](https://www.testmuai.com).
+
+### How LambdaTest Evolved into TestMu AI
+
+In 2017, we launched LambdaTest with a simple mission: make testing fast, reliable, and accessible. As LambdaTest grew, we expanded into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the full depth of the testing lifecycle.
+
+As software development entered the AI era, testing had to evolve, too. We rebuilt the architecture to be AI-native from the ground up, with autonomous agents that **plan, author, execute, analyze, and optimize tests** while keeping humans in the loop. The platform integrates with your repos, CI, IDEs, and terminals, continuously learning from every code change and development signal.
+
+That evolution earned a new name: **TestMu AI**, built for an AI-first future of quality engineering. TestMu is not a new name for us. It is the name of our annual community conference, which has brought together 100,000+ quality engineers to discuss how AI would reshape testing, long before that became an industry norm. 
+
+What started as a high-performance cloud testing platform has transformed into an AI-native, multi-agent system powering a connected, end-to-end quality layer. That evolution defined a new identity: LambdaTest evolved into TestMu AI, built for an AI-first future of quality engineering.
+
+## Support
+
+Got a question? Email [support@testmuai.com](mailto:support@testmuai.com) or chat with us 24x7 from our chat portal.
