@@ -11,15 +11,15 @@ class TodoPage:
         self.py = py
 
     def goto(self) -> "TodoPage":
-        self.py.visit("https://lambdatest.github.io/sample-todo-app/")
+        self.py.visit("https://www.testmuai.com/selenium-playground/todo-app/")
         return self
 
     def get_todo_by_name(self, name: str) -> Element:
-        return self.py.getx(f"(//*[contains(text(),'{name}')])[2]").parent().get("input")
+        return self.py.getx(f"//span[contains(text(),'{name}')]/preceding-sibling::input")
 
 
     def get_all_todos(self) -> Elements:
-        return self.py.find("li[ng-repeat*='todo'] > input")
+        return self.py.find("li.todo-item > input")
 
     def add_todo(self, name: str) -> "TodoPage":
         self.py.get("#sampletodotext").type(name)
