@@ -107,7 +107,7 @@ def test_check_many_items(py: Pylenium, page: TodoPage):
     todo2, todo4 = todos[1], todos[3]
     todo2.click()
     todo4.click()
-    assert py.contains("3 of 5 tasks remaining")
+    py.get("p.text-gray-600").should().contain_text("3 of 5 tasks remaining")
 
 
 @pytest.mark.flaky(reruns=2, reruns_delay=3)
@@ -122,4 +122,4 @@ def test_check_all_items(py: Pylenium, page: TodoPage):
 def test_add_new_item(py: Pylenium, page: TodoPage):
     page.add_todo("Finish the course")
     assert page.get_all_todos().should().have_length(6)
-    assert py.contains("6 of 6 tasks remaining")
+    py.get("p.text-gray-600").should().contain_text("6 of 6 tasks remaining")
