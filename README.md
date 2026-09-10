@@ -13,7 +13,7 @@
 With TestMu AI (Formerly LambdaTest), you can run Pylenium + pytest cross browser tests across real browsers and operating systems. This tutorial series shows how to configure Pylenium with pytest to perform cross browser testing on the TestMu AI cloud.
 
 - [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
-- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/pytest-with-selenium-running-pytest-automation-script-on-testmu-selenium-grid/) for the full setup walkthrough.
+- Follow the [Run PyTest tests with Selenium on TestMu AI](https://www.testmuai.com/support/docs/pytest-with-selenium-running-pytest-automation-script-on-testmu-selenium-grid/) for the full setup walkthrough.
 
 ### Prerequisites
 
